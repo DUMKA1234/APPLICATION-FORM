@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'application.css' %}">
+    <title>Employment Application</title>
+</head>
+<body>
+  
+  
+    <h2>Employment Application</h2>
+    
+    <fieldset>
+      <h1>Personal Information</h1>
+      <form method="post" action="{% url 'biodata' %}">
+        {% csrf_token %}
+      
+      <table>
+        <tr>
+          <td><label for="first_name">First Name:</label></td>
+          <td><input type="text" id="first_name" name="first_name" required></td>
+        </tr>
+        <tr>
+          <td><label for="last_name">Last Name:</label></td>
+          <td><input type="text" id="last_name" name="last_name" required></td>
+        </tr>
+        <tr>
+          <td><label for="email">Email:</label></td>
+          <td><input type="email" id="email" name="email" required></td>
+        </tr>
+        <tr>
+          <td><label for="phone_number">Phone Number:</label></td>
+          <td><input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{11}" placeholder="08012345678" required></td>
+        </tr>
+        <tr>
+          <td><label for="dob">Date of Birth:</label></td>
+          <td><input type="date" id="dob" name="dob" required></td>
+        </tr>
+        <tr>
+          <td><label for="address">Address:</label></td>
+          <td><textarea id="address" name="address" rows="3" required></textarea></td>
+        </tr>
+        <tr>
+          <td><label for="resume">Upload Resume:</label></td>
+          <td><input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div style="text-align: center;">
+              <button type="submit">Save and Continue</button>
+             
+            </script>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+  </form>
+  
+  <script>
+    document.getElementById("employmentForm").addEventListener("submit", function(event) {
+        let valid = true;
+
+        // Validate first name
+        let firstName = document.getElementById("first_name").value.trim();
+        if (firstName === "") {
+            alert("First name is required.");
+            valid = false;
+        }
+
+        // Validate last name
+        let lastName = document.getElementById("last_name").value.trim();
+        if (lastName === "") {
+            alert("Last name is required.");
+            valid = false;
+        }
+
+        // Validate email
+        let email = document.getElementById("email").value.trim();
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            valid = false;
+        }
+
+        // Validate phone number
+        let phoneNumber = document.getElementById("phone_number").value.trim();
+        let phonePattern = /^[0-9]{11}$/;
+        if (!phonePattern.test(phoneNumber)) {
+            alert("Phone number must be 11 digits.");
+            valid = false;
+        }
+
+        // Validate file upload
+        let resume = document.getElementById("resume").files[0];
+        if (resume) {
+            let allowedExtensions = /(\.pdf|\.doc|\.docx)$/i;
+            if (!allowedExtensions.test(resume.name)) {
+                alert("Only .pdf, .doc, or .docx files are allowed.");
+                valid = false;
+            }
+        } else {
+            alert("Please upload your resume.");
+            valid = false;
+        }
+
+        // Prevent form submission if validation fails
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+
+    // Ensure phone number input only allows numbers
+    document.getElementById("phone_number").addEventListener("input", function(event) {
+        this.value = this.value.replace(/\D/g, ""); // Remove non-numeric characters
+    });
+
+  </script>
+ </form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'role.css' %}">
+    <title>Document</title>
+</head>
+<body>
+  <form method="post">
+    {% csrf_token %}
+    <h1>FILL IN YOUR APPLY ROLE</h1>
+    <table>
+    <tr>
+      <td><label for="role">Role:</label></td>
+      <td><input type="role" id="role" name="role" required></td>
+    </tr>
+    <tr>
+      <td colspan="2"><button type="submit">Submit</button></td>
+    </tr>
+  </table>
+  </form>
+  </body>
+  </html>
+    
+    
+    
+    
+    
+    
+    

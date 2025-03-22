@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Delete Job Experience</h1>
+    <p>Are you sure you want to delete this job experience?</p>
+    <p>Company Name: {{ experience.company_name }}</p>
+    <p>Job Title: {{ experience.job_title }}</p>
+    <p>Start Date: {{ experience.start_date }}</p>
+    <p>End Date: {{ experience.end_date }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <p><a href="{% url 'job_experience' %}">Cancel</a></p>
+</body>
+</html>

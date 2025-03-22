@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'education.css' %}">
+    <title>Education Form</title>
+    <script>
+        function validateDates() {
+            let startDate = document.getElementById("start_date").value;
+            let endDate = document.getElementById("end_date").value;
+
+            if (startDate && endDate && startDate > endDate) {
+                alert("End Date must be after Start Date.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Enter Your Education</h1>
+    <form method="post" onsubmit="return validateDates()">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Enter your details</legend>
+            <table>
+                <tr>
+                    <td><label for="institution">Institution:</label></td>
+                    <td><input type="text" id="institution" name="institution" placeholder="University Name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="degree">Degree:</label></td>
+                    <td><input type="text" id="degree" name="degree" placeholder="B.Sc, M.Sc, etc." required></td>
+                </tr>
+                <tr>
+                    <td><label for="start_date">Start Date:</label></td>
+                    <td><input type="date" id="start_date" name="start_date" required></td>
+                </tr>
+                <tr>
+                    <td><label for="end_date">End Date:</label></td>
+                    <td><input type="date" id="end_date" name="end_date" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Save and Continue</button></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
+</html>

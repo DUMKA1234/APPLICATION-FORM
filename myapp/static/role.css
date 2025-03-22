@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(165, 161, 165);
+}
+
+button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  button[type="submit"] {
+    background-color:white;
+    width: 200px;
+    height: 50px;
+    color: red;
+    padding-left: 20px;
+  }
+
+
+h1{
+    color: blue;
+    padding-left: 50px;
+}
+
+table {
+    width: 500px; /* adjust the width as needed */
+    height: 300px; /* adjust the height as needed */
+    border-collapse: collapse;
+    border: 1px solid #ddd; /* adds a border around the table */
+    border-radius: 5px;
+    border-color: #3e8e41;
+    border-style: dashed solid;
+  }
+  
+  label {
+    width: 150px; /* adjust the width as needed */
+    height: 20px; /* adjust the height as needed */
+    color: white; /* adjust the color as needed */
+    display: inline-block; /* to make width and height work */
+    font-size: 20px;
+  }

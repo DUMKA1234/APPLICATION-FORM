@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'jobexperience.css' %}">
+    <title>Document</title>
+    <h1>ENTER YOUR JOB EXPERIENCE</h1>
+</head>
+<body>
+  <form method="post">
+    {% csrf_token %}
+    <h2>Job Experience</h2>
+    <table>
+      <tr>
+        <td><label for="company">Company:</label></td>
+        <td><input type="text" id="company" name="company" required></td>
+      </tr>
+      <tr>
+        <td><label for="job_title">Job Title:</label></td>
+        <td><input type="text" id="job_title" name="job_title" required></td>
+      </tr>
+      <tr>
+        <td><label for="start_date">Start Date:</label></td>
+        <td><input type="date" id="start_date" name="start_date" required></td>
+      </tr>
+      <tr>
+        <td><label for="end_date">End Date:</label></td>
+        <td><input type="date" id="end_date" name="end_date" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save and Continue</button></td>
+
+      </tr>
+    </table>
+  </form>
+
+  <ul>
+    {% for experience in job_experiences %}
+        <li>{{ experience.company_name }} ({{ experience.start_date }} - {{ experience.end_date }})</li>
+        <a href="{% url 'edit_jobexperience' experience.pk %}">Edit</a>
+        <a href="{% url 'delete_jobexperience' experience.pk %}">Delete</a>
+    {% endfor %}
+</ul>
+</body>
+</html>
+
+
+
+
+ 
